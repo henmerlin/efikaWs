@@ -8,7 +8,7 @@ import entidades.Usuario;
 import model.AutenticacaoServico;
 
 
-@javax.jws.WebService(serviceName = "EfikaUsers")
+@javax.jws.WebService(serviceName = "EfikaUsers", wsdlLocation="http://portalefika/efikaWS/EfikaUsers")
 public class EfikaUsers {
 
 	@EJB
