@@ -7,8 +7,12 @@ import javax.persistence.NoResultException;
 
 public class AutenticacaoServico implements AuthInterface {
 
-    private AutenticacaoDAOInter dao = FactoryDAO.createAutenticacaoDAO();
+    private AutenticacaoDAOInter dao;
 
+    public AutenticacaoServico() {
+        dao = FactoryDAO.createAutenticacaoDAO();
+    }
+    
     @Override
     public Boolean verificarCredencial(String login, String senha) throws Exception {
 

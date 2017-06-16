@@ -11,7 +11,7 @@ package model;
  */
 public class FactoryServico {
 
-    public static AuthInterface createAutenticacaoDAO() {
+    public static AuthInterface createAutenticacaoServico() {
         return new AutenticacaoServico();
     }
 
