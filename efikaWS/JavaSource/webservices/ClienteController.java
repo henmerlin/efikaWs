@@ -1,12 +1,13 @@
 package webservices;
 
+import entidades.Usuario;
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import model.AutenticacaoServico;
+import model.AuthInterface;
 
 /**
  *
@@ -16,17 +17,17 @@ import model.AutenticacaoServico;
 public class ClienteController {
 
     @EJB
-    private AutenticacaoServico as;
+    private AuthInterface as;
 
     @GET
     @Path("/{login}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Boolean getCliente(@PathParam("login") String login) {
+    public Usuario consultar(@PathParam("login") String login) {
         try {
-            return this.as.consultarUsuario(login) != null;
+            return as.consultar(login);
         } catch (Exception ex) {
-            //ex.printStackTrace();
-            return false;
+            ex.printStackTrace();
+            return new Usuario();
         }
     }
 }
