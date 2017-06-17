@@ -10,31 +10,33 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import model.AuthInterface;
 import model.FactoryServico;
+import model.UsuarioAdapter;
+import model.UsuarioDTO;
 
 /**
  *
  * @author G0034481
  */
 @Path("/autentica")
-public class ClienteController {
+public class AuthRestImpl {
 
     private AuthInterface as;
 
     @GET
-    @Path("/consulta/{login}")
+    @Path("/consultar/{login}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario consultar(@PathParam("login") String login) {
+    public UsuarioDTO consultar(@PathParam("login") String login) {
         try {
             this.as = FactoryServico.createAutenticacaoServico();
-            return as.consultar(login);
+            return UsuarioAdapter.adapter(as.consultar(login));
         } catch (Exception ex) {
             //ex.printStackTrace();
-            return new Usuario();
+            return new UsuarioDTO();
         }
     }
     
     @POST
-    @Path("/valida")
+    @Path("/verificarCredencial")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Boolean verificarCredencial(Usuario u) {

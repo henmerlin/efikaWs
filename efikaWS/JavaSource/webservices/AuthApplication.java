@@ -15,14 +15,14 @@ import javax.ws.rs.core.Application;
  * @author G0034481
  */
 @ApplicationPath("/*")
-public class ClienteApplication extends Application {
+public class AuthApplication extends Application {
 
     private Set<Object> singletons = new HashSet<Object>();
 
     private Set<Class<?>> empty = new HashSet<Class<?>>();
 
-    public ClienteApplication() {
-        singletons.add(new ClienteController());
+    public AuthApplication() {
+        singletons.add(new AuthRestImpl());
     }
 
     public Set<Object> getSingletons() {

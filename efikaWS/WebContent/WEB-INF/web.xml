@@ -12,7 +12,7 @@
 
     <context-param>
         <param-name>javax.ws.rs.Application</param-name>
-        <param-value>webservices.ClienteApplication</param-value>
+        <param-value>webservices.AuthApplication</param-value>
     </context-param>
     
     <listener>

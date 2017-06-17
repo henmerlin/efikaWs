@@ -4,11 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_efika_web_permissoes")
+@JsonIgnoreProperties(value = "senha")
 public class Usuario {
 
     @Id
@@ -18,6 +22,7 @@ public class Usuario {
 
     @NotEmpty
     @Column(name = "SENHA")
+    @JsonProperty
     private String senha;
 
     @NotEmpty
@@ -36,6 +41,7 @@ public class Usuario {
         this.login = login;
     }
 
+    @JsonIgnore
     public String getSenha() {
         return senha;
     }
