@@ -13,9 +13,10 @@ import javax.persistence.EntityManager;
  */
 public class AbstractHibernateDAO {
 
-    protected static EntityManager em = FactoryEntityManager.getInstance();
+    protected EntityManager em;
 
     public void persist(Object obj) throws Exception {
+        em = FactoryEntityManager.getInstance();
         em.getTransaction().begin();
         em.persist(obj);
         em.getTransaction().commit();
