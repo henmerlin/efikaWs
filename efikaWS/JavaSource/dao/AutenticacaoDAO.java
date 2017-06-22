@@ -15,6 +15,8 @@ public class AutenticacaoDAO extends AbstractHibernateDAO implements Autenticaca
             return (Usuario) query.getSingleResult();
         } catch (NoResultException e) {
             throw new Exception("Usuário não existe");
+        }finally{
+            em.close();
         }
     }
 

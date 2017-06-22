@@ -20,6 +20,7 @@ public class AbstractHibernateDAO {
         em.getTransaction().begin();
         em.persist(obj);
         em.getTransaction().commit();
+        em.close();
     }
 
 }
