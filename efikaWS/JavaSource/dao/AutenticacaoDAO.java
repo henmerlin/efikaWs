@@ -9,14 +9,13 @@ public class AutenticacaoDAO extends AbstractHibernateDAO implements Autenticaca
     @Override
     public Usuario consultar(String login) throws Exception {
         try {
-            em = FactoryEntityManager.getInstance();
-            Query query = em.createQuery("FROM Usuario u WHERE u.login =:param1");
+            Query query = getEm().createQuery("FROM Usuario u WHERE u.login =:param1");
             query.setParameter("param1", login);
             return (Usuario) query.getSingleResult();
         } catch (NoResultException e) {
             throw new Exception("Usuário não existe");
         }finally{
-            em.close();
+            this.close();
         }
     }
 

@@ -6,6 +6,8 @@
 package dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -13,14 +15,29 @@ import javax.persistence.EntityManager;
  */
 public class AbstractHibernateDAO {
 
-    protected EntityManager em;
+    private EntityManagerFactory emf;
+
+    private EntityManager em;
 
     public void persist(Object obj) throws Exception {
-        em = FactoryEntityManager.getInstance();
         em.getTransaction().begin();
         em.persist(obj);
         em.getTransaction().commit();
-        em.close();
+    }
+
+    public EntityManager getEm() {
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("authPU");
+            em = emf.createEntityManager();
+        }
+        return em;
+    }
+
+    public void close() {
+        if (emf.isOpen()) {
+            em.close();
+            emf.close();
+        }
     }
 
 }
